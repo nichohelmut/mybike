@@ -19,9 +19,13 @@ const validationSchema = Yup.object().shape({
 });
 
 const categories = [
-  { label: "Furniture", value: 1 },
-  { label: "Clothing", value: 2 },
-  { label: "Cameras", value: 3 },
+  { label: "Furniture", value: 1, icon: "floor-lamp", color: "#fc5c65" },
+  { label: "Clothing", value: 2, icon: "shoe-heel", color: "#2bcbba" },
+  { label: "Cameras", value: 3, icon: "camera", color: "#fed330" },
+  { label: "Cars", value: 4, icon: "car", color: "#fd9644" },
+  { label: "Games", value: 5, icon: "cards", color: "#26de81" },
+  { label: "Sports", value: 6, icon: "basketball", color: "#45aaf2" },
+  { label: "Movies & Music", value: 7, icon: "headphones", color: "#4b7bec" },
 ];
 
 function ListingEditScreen() {
@@ -37,7 +41,12 @@ function ListingEditScreen() {
         onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
-        <AppFormField name="title" maxLength={255} placeholder="Title" />
+        <AppFormField
+          name="title"
+          maxLength={255}
+          placeholder="Title"
+          style={styles.container2}
+        />
         <AppFormField
           name="price"
           maxLength={8}
@@ -55,9 +64,9 @@ function ListingEditScreen() {
           numberOfLine={3}
           autoCapitalize="none"
           placeholder="Description"
+          style={styles.container2}
         />
-
-        <SubmitButton title="Post" />
+        <SubmitButton title="Post" style={styles.container2} />
       </AppForm>
     </Screen>
   );
@@ -66,6 +75,11 @@ function ListingEditScreen() {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
+    alignSelf: "flex-start",
+  },
+  container2: {
+    padding: 10,
+    width: "100%",
   },
   logo: {
     width: 80,

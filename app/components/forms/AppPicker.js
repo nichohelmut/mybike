@@ -45,19 +45,25 @@ function AppPicker({ icon, items, onSelectItem, placeholder, selectedItem }) {
       <Modal visible={modalVisible} animationType="slide">
         <Screen>
           <Button title="Close" onPress={() => setModalVisible(false)} />
-          <FlatList
-            data={items}
-            keyExtractor={(item) => item.value.toString()}
-            renderItem={({ item }) => (
-              <PickerItem
-                label={item.label}
-                onPress={() => {
-                  setModalVisible(false);
-                  onSelectItem(item);
-                }}
-              />
-            )}
-          />
+          <View>
+            <FlatList
+              data={items}
+              numColumns={3} 
+              columnWrapperStyle={styles.row}
+              keyExtractor={(item) => item.value.toString()}
+              renderItem={({ item }) => (
+                <PickerItem
+                  label={item.label}
+                  icon={item.icon}
+                  color={item.color}
+                  onPress={() => {
+                    setModalVisible(false);
+                    onSelectItem(item);
+                  }}
+                />
+              )}
+            />
+          </View>
         </Screen>
       </Modal>
     </>
@@ -69,9 +75,12 @@ const styles = StyleSheet.create({
     backgroundColor: defaultStyles.colors.light,
     borderRadius: 25,
     flexDirection: "row",
-    width: "100%",
+    width: "50%",
     padding: 15,
     marginVertical: 10,
+  },
+  row: {
+    justifyContent: "space-around",
   },
   icon: {
     marginRight: 10,
