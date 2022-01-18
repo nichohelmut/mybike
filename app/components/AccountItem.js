@@ -1,9 +1,6 @@
 import React from "react";
-import { View, Image, StyleSheet, TouchableHighlight } from "react-native";
-import colors from "../config/colors";
-import AppText from "./AppText";
+import { View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import ListItemSeperator from "../components/ListItemSeperator";
 
 function AccountItem({
   name,

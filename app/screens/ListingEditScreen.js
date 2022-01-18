@@ -1,15 +1,9 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import * as Yup from "yup";
-
+import CategoryPickerItem from "../components/CategoryPickerItem";
+import { Form, FormField, FormPicker, SubmitButton } from "../components/forms";
 import Screen from "../components/Screen";
-
-import {
-  AppForm,
-  AppFormField,
-  AppFormPicker,
-  SubmitButton,
-} from "../components/forms";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
@@ -31,7 +25,7 @@ const categories = [
 function ListingEditScreen() {
   return (
     <Screen style={styles.container}>
-      <AppForm
+      <Form
         initialValues={{
           title: "",
           price: "",
@@ -41,33 +35,31 @@ function ListingEditScreen() {
         onSubmit={(values) => console.log(values)}
         validationSchema={validationSchema}
       >
-        <AppFormField
-          name="title"
-          maxLength={255}
-          placeholder="Title"
-          style={styles.container2}
-        />
-        <AppFormField
+        <FormField name="title" maxLength={255} placeholder="Title" />
+        <FormField
           name="price"
           maxLength={8}
           keyboardType="numeric"
           placeholder="Price"
+          width={120}
         />
-        <AppFormPicker
+        <FormPicker
           name="category"
+          numberOfColumns={3}
           placeholder="Category"
           items={categories}
+          width="50%"
+          PickerItemComponent={CategoryPickerItem}
         />
-        <AppFormField
+        <FormField
           name="description"
           multiline
           numberOfLine={3}
           autoCapitalize="none"
           placeholder="Description"
-          style={styles.container2}
         />
-        <SubmitButton title="Post" style={styles.container2} />
-      </AppForm>
+        <SubmitButton title="Post" />
+      </Form>
     </Screen>
   );
 }
@@ -75,19 +67,7 @@ function ListingEditScreen() {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
-    alignSelf: "flex-start",
-  },
-  container2: {
-    padding: 10,
-    width: "100%",
-  },
-  logo: {
-    width: 80,
-    height: 80,
-    marginTop: 50,
-    marginBottom: 20,
-    alignSelf: "center",
-  },
+  }
 });
 
 export default ListingEditScreen;
