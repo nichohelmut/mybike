@@ -14,7 +14,11 @@ function AppTextInput({ icon, ...otherProps }) {
           style={styles.icon}
         />
       )}
-      <TextInput style={defaultStyles.text} {...otherProps}></TextInput>
+      <TextInput
+        style={defaultStyles.text}
+        {...otherProps}
+        multiline
+      ></TextInput>
     </View>
   );
 }
